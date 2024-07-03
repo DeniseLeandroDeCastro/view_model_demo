@@ -19,29 +19,26 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ViewModelDemoTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                MainScreen()
             }
         }
     }
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun ScreenSetup() {
+    MainScreen()
 }
 
-@Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun MainScreen() {
+
+}
+
+@Preview(showSystemUi = true)
+@Composable
+fun MainScreenPreview() {
     ViewModelDemoTheme {
-        Greeting("Android")
+
     }
 }
