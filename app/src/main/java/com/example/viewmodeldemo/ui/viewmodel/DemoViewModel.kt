@@ -7,19 +7,22 @@ import kotlin.math.roundToInt
 
 class DemoViewModel {
 
-    var isFahrenheit by mutableStateOf(true)
-    var result by mutableStateOf("")
+    var isFahrenheit by mutableStateOf(false)
+    var result by mutableStateOf("0")
 
-    fun convertTemperature(temp: String) {
+    fun convertTemp(temp: String) {
         try {
-            val temInt = temp.toInt()
+            val tempInt = temp.toInt()
             if (isFahrenheit) {
-                result = ( (temInt - 32) * 0.5556 ).roundToInt().toString()
+                result = ( (tempInt - 32) * 0.5556 ).roundToInt().toString()
             } else {
-                result = ( (temInt * 1.8) + 32 ).roundToInt().toString()
+                result = ( (tempInt * 1.8) + 32 ).roundToInt().toString()
             }
         } catch(e: Exception) {
             result = "Entrada inválida!"
         }
+    }
+    fun switchChange() {
+        isFahrenheit = !isFahrenheit
     }
 }

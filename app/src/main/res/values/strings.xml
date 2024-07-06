@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ViewModelDemo</string>
+    <string name="label_outlined_text_field">Informe a temperatura</string>
 </resources>
