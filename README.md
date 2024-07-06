@@ -1,6 +1,8 @@
 <div align="center">
 
-![Static Badge](https://img.shields.io/badge/Status-Em%20Constru%C3%A7%C3%A3o-%23FFD700)
+![Static Badge](https://img.shields.io/badge/status-Conclu%C3%ADdo-%2390EE90)
+
+
 
 # View Model com Jetpack Compose
   
