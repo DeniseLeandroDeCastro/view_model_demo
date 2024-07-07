@@ -3,7 +3,6 @@
 ![Static Badge](https://img.shields.io/badge/status-Conclu%C3%ADdo-%2390EE90)
 
 
-
 # View Model com Jetpack Compose
   
 </div>
@@ -81,5 +80,49 @@ fun switchChange() {
   isFahrenheit = !isFahrenheit
 }
 ```
+
+## Acessando DemoViewModel da MainActivity
+
+<p>
+Agora que declaramos uma classe <b>ViewModel</b>, a próxima etapa é criar uma instância e integrá-la aos elementos <b>composables</b> que compõem nossa MainActivity. Este projeto envolverá a criação de uma instância <b>DemoViewModel</b> como parâmetro para a função <b>ScreenSetup</b> e a passagem das variáveis ​​de estado e referências de função para a função MainScreen. Abra MainActivity no editor de código e faça as seguintes alterações:
+</p>
+
+```kotlin
+@Composable
+fun ScreenSetup(viewModel: DemoViewModel = DemoViewModel()) {
+    MainScreen(
+        isFahrenheit = viewModel.isFahrenheit,
+        result = viewModel. result,
+        convertTemp = { viewModel.convertTemp(it) },
+        switchChange = { viewModel.switchChange() }
+    )
+}
+
+
+@Composable
+fun MainScreen(
+    isFahrenheit: Boolean,
+    result: String,
+    convertTemp: (String) -> Unit,
+    switchChange: () -> Unit
+) {
+//TODO
+}
+
+
+@Preview(showSystemUi = true)
+@Composable
+fun DefaultPreview(viewModel: DemoViewModel = DemoViewModel()) {
+    ViewModelDemoTheme {
+        MainScreen(
+            isFahrenheit = viewModel.isFahrenheit,
+            result = viewModel.result,
+            convertTemp = { viewModel.convertTemp(it) },
+            switchChange = { viewModel.switchChange() }
+        )
+    }
+}
+```
+
 
 
