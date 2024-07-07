@@ -124,5 +124,61 @@ fun DefaultPreview(viewModel: DemoViewModel = DemoViewModel()) {
 }
 ```
 
+Para evitar que a função <b>MainScreen</b> fique desordenada, os componentes <b>Switch, OutlinedTextField</b> e <b>Text</b> do indicador de unidade serão colocados em um elemento composable separado chamado <b>InputRow</b>, que agora pode ser adicionado à <b>MainActivity.</b>
+
+```kotlin
+@Composable
+fun InputRow(
+    isFahrenheit: Boolean,
+    textState: String,
+    switchChange: () -> Unit,
+    onTextChange: (String) -> Unit
+) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Switch(
+            checked = isFahrenheit,
+            onCheckedChange = { switchChange() },
+            modifier = Modifier.padding(end = 10.dp)
+        )
+        OutlinedTextField(
+            value = textState,
+            onValueChange = { onTextChange(it) },
+            keyboardOptions = KeyboardOptions( keyboardType = KeyboardType.Number ),
+            singleLine = true,
+            label = { Text(stringResource(R.string.label_outlined_text_field)) },
+            modifier = Modifier.padding(2.dp),
+            textStyle = TextStyle(
+                fontWeight = FontWeight.Bold,
+                fontSize = 20.sp
+            ),
+            trailingIcon = {
+                Icon(
+                    painter = painterResource(id = R.drawable.ac_unit),
+                    contentDescription = "Ícone de temperatura frio",
+                    modifier = Modifier.size(40.dp),
+                    tint = colorResource(id = R.color.dodger_blue)
+                )
+            },
+            shape = MaterialTheme.shapes.large
+        )
+        Crossfade(
+            targetState = isFahrenheit,
+            animationSpec = tween(3000),
+            modifier = Modifier.padding(end = 10.dp),
+        ) { visible ->
+            when (visible) {
+                true -> Text("\u2109", style = MaterialTheme.typography.headlineMedium)
+                false -> Text("\u2103", style = MaterialTheme.typography.headlineMedium)
+            }
+        }
+    }
+}
+```
+
+<p>
+A função <b>InputRow</b> espera como parâmetros os valores de estado e funções contidas no view model junto com uma variável de estado <b>textState</b> e um manipulador de eventos <b>onTextChange.</b> Esses dois últimos parâmetros são usados ​​para exibir o texto digitado pelo usuário no campo de texto e serão "içados" para a função MainScreen. O valor textState atual também é passado para a função convertTemp() quando o usuário clica no botão.
+</p>
+
+
 
 
