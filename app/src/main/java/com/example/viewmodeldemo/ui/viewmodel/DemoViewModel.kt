@@ -13,10 +13,10 @@ class DemoViewModel {
     fun convertTemp(temp: String) {
         try {
             val tempInt = temp.toInt()
-            if (isFahrenheit) {
-                result = ( (tempInt - 32) * 0.5556 ).roundToInt().toString()
+            result = if (isFahrenheit) {
+                ( (tempInt - 32) * 0.5556 ).roundToInt().toString()
             } else {
-                result = ( (tempInt * 1.8) + 32 ).roundToInt().toString()
+                ( (tempInt * 1.8) + 32 ).roundToInt().toString()
             }
         } catch(e: Exception) {
             result = "Entrada inválida!"
@@ -26,3 +26,4 @@ class DemoViewModel {
         isFahrenheit = !isFahrenheit
     }
 }
+

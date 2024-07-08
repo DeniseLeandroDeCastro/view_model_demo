@@ -9,10 +9,12 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -25,12 +27,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -50,6 +54,7 @@ class MainActivity : ComponentActivity() {
                 ScreenSetup()
             }
         }
+
     }
 }
 @Composable
@@ -79,7 +84,7 @@ fun InputRow(
             trailingIcon = {
                 Icon(
                     painter = painterResource(id = R.drawable.ac_unit),
-                    contentDescription = "Ícone de temperatura frio",
+                    contentDescription = stringResource(R.string.description_trailing_icon),
                     modifier = Modifier.size(40.dp),
                     tint = colorResource(id = R.color.dodger_blue)
                 )
@@ -88,8 +93,7 @@ fun InputRow(
         )
         Crossfade(
             targetState = isFahrenheit,
-            animationSpec = tween(3000),
-            modifier = Modifier.padding(end = 10.dp),
+            animationSpec = tween(3000)
         ) { visible ->
             when (visible) {
                 true -> Text("\u2109", style = MaterialTheme.typography.headlineMedium)
@@ -122,8 +126,9 @@ fun MainScreen(
     ) {
         var textState by remember { mutableStateOf("") }
         val onTextChange = { text: String -> textState = text }
+
         Text(
-            "Conversor de temperatura",
+            stringResource(R.string.text_title),
             modifier = Modifier.padding(top = 20.dp),
             style = MaterialTheme.typography.headlineMedium
         )
@@ -133,19 +138,30 @@ fun MainScreen(
             switchChange = switchChange,
             onTextChange = onTextChange
         )
-        Text(
-            result,
-            modifier = Modifier.padding(top = 20.dp),
-            style = MaterialTheme.typography.displayLarge
+        Text(result,
+            modifier = Modifier.padding(top = 40.dp),
+            style = MaterialTheme.typography.displayMedium,
+            color = if (
+                result == "Entrada inválida!")
+                Color.Red else colorResource(id = R.color.dodger_blue),
+            textAlign = TextAlign.Center
         )
         Button(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(40.dp),
+            shape = MaterialTheme.shapes.medium,
+            colors = ButtonDefaults.buttonColors(
+                containerColor = colorResource(id = R.color.dodger_blue)
+            ),
             onClick = { convertTemp(textState) }
         ) {
-            Text("Converter Temperatura")
+            Text(
+                stringResource(R.string.btn_convert_temperature)
+            )
         }
     }
 }
-
 @Preview(showSystemUi = true)
 @Composable
 fun DefaultPreview(viewModel: DemoViewModel = DemoViewModel()) {

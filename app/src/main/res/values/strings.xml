@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">ViewModelDemo</string>
     <string name="label_outlined_text_field">Informe a temperatura</string>
+    <string name="description_trailing_icon">Ícone de temperatura frio</string>
+    <string name="text_title">Conversor de temperatura</string>
+    <string name="btn_convert_temperature">Converter Temperatura</string>
 </resources>
