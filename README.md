@@ -1,6 +1,7 @@
 <div align="center">
 
-![Static Badge](https://img.shields.io/badge/status-Conclu%C3%ADdo-%2390EE90)
+![Static Badge](https://img.shields.io/badge/status-Conclu%C3%ADdo-%2390EE90) <br>
+:smiley:
 
 
 # View Model com Jetpack Compose
