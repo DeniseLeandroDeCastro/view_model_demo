@@ -341,6 +341,14 @@ fun DefaultPreview(viewModel: DemoViewModel = DemoViewModel()) {
 O elemento <b>composable MainScreen</b> declara a variável de estado <b>textState</b> e um manipulador de eventos <b>onTextChange.</b> O primeiro filho do layout Coluna é um componente static Text que exibe um título. A seguir, o <b>InputRow</b> é chamado e são passados ​​os parâmetros necessários. O terceiro filho é outro componente Text, desta vez, configurado para exibir o conteúdo da variável de estado de resultado do modelo de visualização. Por fim, um elemento composable de <b>Button</b> é configurado para chamar a função <b>convertTemp()</b> do view model, passando o <b>textState.</b> A função <b>convertTemp()</b> irá calcular a temperatura convertida e atribuí-la à variável de estado do resultado, desencadeando assim, uma recomposição da hierarquia combinável.
 </p>
 
+## Resultado final do app
+
+<div align="center"><br>
+
+<img src="https://github.com/DeniseLeandroDeCastro/view_model_demo/assets/29150094/629cf3e9-2686-4af7-bf02-244d90049c5b" width="300" height="600"/>
+<img src="https://github.com/DeniseLeandroDeCastro/view_model_demo/assets/29150094/14014626-8f93-49fc-b4db-d790a6eba0b8" width="300" height="600"/>
+  
+</div>
 
 
 
